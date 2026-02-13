@@ -1,0 +1,124 @@
+/* 1. 화면 전체 높이를 사용하도록 설정 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2. body를 Flex 컨테이너로 만들어 #view를 중앙으로 보냄 */
+body {
+    display: flex;
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;     /* 세로 중앙 */
+    background-color: #fff0f3; /* 배경색도 전체적으로 깔아주면 예뻐요 */
+    font-family: 'Arial', sans-serif;
+}
+
+/* 3. 기존 #view 스타일 유지 (혹은 미세 조정) */
+#view {    
+    width: 500px;
+    height: 500px;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 입체감 추가 */
+}
+
+#photo{
+    width: 250px;
+    height: auto;
+}
+
+#btn{
+    padding:10px 20px;
+    border:none;
+    display:flex;
+    gap: 15px;
+}
+
+#yes{
+    border-radius:30%;
+    background-color: greenyellow;
+    cursor: pointer;
+}
+
+/* 반짝거리는 애니메이션 정의 */
+@keyframes glitter {
+    0% { background-color: #ff4d6d; box-shadow: 0 0 5px #ff4d6d; }
+    50% { background-color: #ff85a1; box-shadow: 0 0 20px #ff85a1; }
+    100% { background-color: #ff4d6d; box-shadow: 0 0 5px #ff4d6d; }
+}
+
+#yes:hover {
+    /* 마우스를 올리면 glitter 애니메이션을 0.5초마다 무한 반복 */
+    animation: glitter 0.5s infinite;
+    cursor: pointer;
+}
+
+#no{
+    border-radius: 10%;
+    background-color: red;
+    transition: all 0.2s ease-out; /* 도망갈 때 스르륵 움직이게 */
+    z-index: 10; /* 버튼이 이미지 위로 오도록 */
+}
+
+/* 모바일 전용 (화면이 작아질 때) */
+@media (max-width: 600px) {
+    #view {
+        width: 90%;         /* 화면 너비의 90%만 차지 */
+        height: 400px;
+    }
+    
+    #photo {
+        width: 150px;       /* 사진 크기 축소 */
+    }
+}
+
+
+
+/* 성공 텍스트 애니메이션 */
+.yes-text {
+    font-size: 3rem;
+    color: #ff4d6d;
+    text-shadow: 2px 2px 10px rgba(255, 77, 109, 0.5);
+    animation: bounce 1s infinite; /* 텍스트가 통통 튐 */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 배경에 하트가 쏟아지는 느낌을 위해 살짝 그라데이션 추가 */
+#view {
+    background: linear-gradient(180deg, #ffcad4 0%, #ffffff 100%);
+    text-align: center;
+}
+
+/* 하트 입자의 기본 스타일 */
+.heart-particle {
+    position: fixed; /* 화면에 고정 */
+    top: -10%;       /* 화면 위쪽 밖에서 시작 */
+    font-size: 24px;
+    z-index: 1000;   /* 다른 요소보다 항상 위에 보이도록 */
+    user-select: none;
+    pointer-events: none; /* 하트 때문에 버튼 클릭이 안 되는 방지 */
+    animation: fall linear forwards; /* 아래 정의한 fall 애니메이션 실행 */
+}
+
+/* 하트가 떨어지는 애니메이션 */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg); /* 화면 바닥 너머까지 이동 */
+        opacity: 0; /* 바닥에 닿을 때쯤 투명하게 */
+    }
+}
