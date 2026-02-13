@@ -3,14 +3,15 @@ function movePage(){
 }
 
 function runAway(event){
-    // 터치 이벤트일 경우 브라우저의 기본 동작(스크롤 등)을 막음
+    // 터치 이벤트 발생 시 화면 스크롤 방지
     if (event && event.type === 'touchstart') {
-        event.preventDefault(); 
+        // event.preventDefault(); // 필요 시 활성화 (버튼 클릭 방해될 수 있음)
     }
 
     const noBtn = document.getElementById('no');
-    const veiw = document.getElementById('view');
+    const view = document.getElementById('view'); // veiw -> view 오타 수정
 
+    // 부모 요소(#view)의 크기를 기준으로 랜덤 좌표 계산
     const x = Math.random() * (view.clientWidth - noBtn.clientWidth);
     const y = Math.random() * (view.clientHeight - noBtn.clientHeight);
 
@@ -18,11 +19,12 @@ function runAway(event){
     noBtn.style.left = x + 'px';
     noBtn.style.top = y + 'px';
 }
+
 let currentScale = 1;
 
 function size_up(){
     const yesBtn = document.getElementById('yes');
-    currentScale += 0.3;
+    currentScale += 0.2; // 0.3은 너무 금방 커질 수 있으니 0.2 추천
     yesBtn.style.transform = `scale(${currentScale})`;
     yesBtn.style.transition = "transform 0.2s ease-in-out";
 }

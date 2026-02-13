@@ -3,6 +3,7 @@
     <head>
         <title>Be my valentine</title>
         <link rel="stylesheet" href="style.css"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
@@ -12,7 +13,7 @@
             <img id="photo" src="valentine.png">
             <div id="btn">
                 <button id="yes" type="button" onmouseover="size_up()" onclick="movePage()">Yes!!</button>
-                <button id="no" type="button" onmouseover="runAway(); size_up()" ontouchstart="runAway()">No...</button>
+                <button id="no" type="button" onmouseover="runAway(event); size_up()" ontouchstart="runAway(event); size_up()">No...</button>
             </div>
             
         </div>
