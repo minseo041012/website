@@ -2,7 +2,12 @@ function movePage(){
     location.href="yes.html";
 }
 
-function runAway(){
+function runAway(event){
+    // 터치 이벤트일 경우 브라우저의 기본 동작(스크롤 등)을 막음
+    if (event && event.type === 'touchstart') {
+        event.preventDefault(); 
+    }
+
     const noBtn = document.getElementById('no');
     const veiw = document.getElementById('view');
 
